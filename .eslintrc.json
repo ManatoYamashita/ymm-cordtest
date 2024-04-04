@@ -2,7 +2,7 @@
   "extends": ["next", "next/core-web-vitals", "prettier"],
   "plugins": ["@next/eslint-plugin-next", "prettier"],
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error", { "singleQuote": true, "semi": false }],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "indent": ["error", 2],
