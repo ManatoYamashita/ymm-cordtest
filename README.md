@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 都道府県別の総人口推移グラフを表示するSPA(Single Page Application)
 
-## Getting Started
+このアプリケーションは、日本の都道府県別の総人口推移をグラフで可視化することができます。ユーザーは、興味のある都道府県を選択し、その人口推移を確認することができます。
 
-First, run the development server:
+## 特徴
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 日本の都道府県データを利用
+- 選択した都道府県の総人口推移をグラフで表示
+- レスポンシブデザインに対応
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 技術スタック
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- React（Next.js）
+- TypeScript
+- SCSS
+- Highcharts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- ESlint
+- Prettier
+- ChatGPT
+- jest
 
-## Learn More
+## ローカルでの実行方法
 
-To learn more about Next.js, take a look at the following resources:
+1. リポジトリをクローンします。
+   ```
+   git clone https://github.com/ManatoYamashita/ymm-cordtest.git
+   ```
+2. 依存関係をインストールします。
+   ```
+   npm install
+   ```
+3. アプリケーションをローカルで起動します。
+   ```
+   npm start
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## テストの実行
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+アプリケーションのテストを実行するには、以下のコマンドを使用します。
+  ```
+  npm test
+  ```
