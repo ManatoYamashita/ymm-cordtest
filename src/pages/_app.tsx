@@ -1,8 +1,19 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
 import Main from '@/pages/index'
 import '@/pages/styles/globals.scss'
+import Highcharts from 'highcharts'
 
 export default function App() {
+  
+  useEffect(() => {
+    Highcharts.setOptions({
+      accessibility: {
+        enabled: false
+      }
+    });
+  }, []);
+
   return (
     <>
       <Head>
