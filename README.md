@@ -1,16 +1,22 @@
 # 都道府県別の総人口推移グラフを表示するSPA
 
+<p align="center">
+  <img alt="poster" src="https://github.com/ManatoYamashita/ymm-cordtest/assets/95745485/5f877541-7879-44bf-9033-f4de679edd90" width="700" style="display:block; margin:auto;" />
+</p>
+
 [Deployed by Vercel](https://ymm-cordtest.vercel.app)
 
 このアプリケーションは、日本の都道府県別の総人口推移をグラフで可視化することができます。ユーザーは、興味のある都道府県を選択し、その人口推移を確認することができます。
 
-## 特徴
+## Feature
 
 - 日本の都道府県データを利用
 - 選択した都道府県の総人口推移をグラフで表示
 - レスポンシブデザインに対応
 
-## 技術スタック
+## Technology
+
+### Frontend
 
 - React(ver: 18)
 - Next.js(ver: 14.1.4)
@@ -18,12 +24,13 @@
 - SCSS(ver: 1.72.2)
 - Highcharts(ver: 11.4.0)
 
--- ESlint(ver: 8)
--- Prettier(ver: 3.2.5)
--- ChatGPT(ver: 4)
--- jest(ver: 29.7.0)
+### Other
+- ESlint(ver: 8)
+- Prettier(ver: 3.2.5)
+- ChatGPT(ver: 4)
+- jest(ver: 29.7.0)
 
-## ローカルでの実行方法
+## Execution
 
 1. リポジトリをクローンします。
    ```
@@ -38,7 +45,7 @@
    npm start
    ```
 
-## テストの実行
+## Test
 
 アプリケーションのテストを実行するには、以下のコマンドを使用します。
   ```
