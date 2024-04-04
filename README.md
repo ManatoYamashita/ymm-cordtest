@@ -1,10 +1,9 @@
 # 都道府県別の総人口推移グラフを表示するSPA
 
 <p align="center">
-  <img alt="poster" src="https://github.com/ManatoYamashita/ymm-cordtest/assets/95745485/5f877541-7879-44bf-9033-f4de679edd90" width="700" style="display:block; margin:auto;" />
+  <img alt="poster" src="https://github.com/ManatoYamashita/ymm-cordtest/assets/95745485/5f877541-7879-44bf-9033-f4de679edd90" width="700" style="display:block; margin:auto;" /><br>
+  <a href="https://ymm-cordtest.vercel.app" style="display:block; margin:auto;">Deployed by Vecel</a>
 </p>
-
-[Deployed by Vercel](https://ymm-cordtest.vercel.app)
 
 このアプリケーションは、日本の都道府県別の総人口推移をグラフで可視化することができます。ユーザーは、興味のある都道府県を選択し、その人口推移を確認することができます。
 
