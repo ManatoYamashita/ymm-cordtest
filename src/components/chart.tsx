@@ -2,31 +2,22 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import React, { useEffect, useState } from 'react'
 
-// Highchartsのオプション型を定義
 interface ChartOptions {
-  chart: { type: string } // グラフの種類を指定するオブジェクト
-  title: { text: string } | null // ここにセミコロンを追加
-  xAxis: {
-    // x軸の設定
-    title: { text: string } // x軸のタイトルを指定するオブジェクトにセミコロンを追加
-  }
-  yAxis: {
-    // y軸の設定
-    title: { text: string } // y軸のタイトルを指定するオブジェクト
-  }
-  series: { name: string; data: number[] }[] // グラフに描画するデータシリーズの配列
+  chart: { type: string }
+  title: { text: string } | null 
+  xAxis: {title: { text: string }}
+  yAxis: {title: { text: string }}
+  series: { name: string; data: number[] }[]
 }
 
-// Propsの型を定義
 interface ChartProps {
   data: {
     name: string
-    data: { year: string; value: number }[] // 各データポイントの年と値
+    data: { year: string; value: number }[]
   }[]
 }
 
 export const Chart = ({ data }: ChartProps) => {
-  // グラフのオプションを管理するstateで初期化
   const [options, setOptions] = useState<ChartOptions>({
     chart: { type: 'line' },
     title: null,
@@ -35,11 +26,9 @@ export const Chart = ({ data }: ChartProps) => {
     series: [],
   })
 
-  // データが変更されたらグラフのオプションを更新する
   useEffect(() => {
-    if (data.length === 0) return // データが空なら更新しない
+    if (data.length === 0) return
 
-    // グラフのオプションを設定
     setOptions({
       chart: { type: 'line' },
       title: { text: '' },
@@ -54,8 +43,7 @@ export const Chart = ({ data }: ChartProps) => {
         data: series.data.map((item) => item.value),
       })),
     })
-  }, [data]) // 依存配列にdataを設定し、dataが更新されたらこの効果を実行
+  }, [data])
 
-  // Highchartsコンポーネントをレンダリングし、設定したオプションを適用
   return <HighchartsReact highcharts={Highcharts} options={options} />
 }

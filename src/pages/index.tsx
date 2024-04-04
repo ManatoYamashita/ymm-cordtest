@@ -1,33 +1,28 @@
-// index.tsx - メインコンポーネントファイル
 import { useState } from 'react'
-import { Chart } from '@/components/chart' // Chartコンポーネントをインポート（グラフ表示用）
-import { usePrefectures } from '@/hooks/usePrefecture' // 都道府県データを取得するカスタムフックをインポート
-import { usePopulationData } from '@/hooks/usePopulationData' // 人口データを取得するカスタムフックをインポート
+import { Chart } from '@/components/chart'
+import { usePrefectures } from '@/hooks/usePrefecture'
+import { usePopulationData } from '@/hooks/usePopulationData'
 import styles from '@/pages/styles/page.module.scss'
 
 export default function Home() {
-  // 選択された都道府県コードの状態を管理
-  const [selectedPrefCodes, setSelectedPrefCodes] = useState<number[]>([]) // selectedPrefCodesはnumber[]型。空の配列で初期化して状態管理
-  // 人口データを取得するカスタムフックを使用して、都道府県別の人口データを取得
-  const { prefectures } = usePrefectures() // `prefectures` プロパティのみを抽出
+  const [selectedPrefCodes, setSelectedPrefCodes] = useState<number[]>([])
+  const { prefectures } = usePrefectures()
   const populationData = usePopulationData(selectedPrefCodes, prefectures).map(
     (data) => ({
       ...data,
       data: data.data.map((item) => ({
         ...item,
-        year: item.year.toString(), // この行を追加しました
+        year: item.year.toString(),
       })),
     })
   )
 
-  // チェックボックスの状態変更をハンドルする関数
   function onChange(prefCode: number, isChecked: boolean) {
     setSelectedPrefCodes((prev) =>
       isChecked ? [...prev, prefCode] : prev.filter((code) => code !== prefCode)
     )
   }
 
-  // レンダリング
   return (
     <>
       <main className={styles.main}>

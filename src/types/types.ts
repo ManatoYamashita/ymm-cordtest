@@ -1,4 +1,3 @@
-// types.ts - 型定義ファイル
 export interface Prefecture {
   prefCode: number
   prefName: string

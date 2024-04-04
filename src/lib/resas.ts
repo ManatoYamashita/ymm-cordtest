@@ -1,28 +1,24 @@
-// RESAS APIにアクセスするためのベースURLを定義します
 const baseURL = 'https://opendata.resas-portal.go.jp'
 
 /**
- * RESAS APIへのリクエストを行う関数
- *
- * @param {string} path - リクエストするエンドポイントのパス
- * @param {Record<string, string | number>} query - クエリパラメータをキーと値のペアで保持するオブジェクト
- * @param {Record<string, string>} headers - 追加のHTTPヘッダーをキーと値のペアで保持するオブジェクト
- * @returns {Promise<any>} - APIからのレスポンスをJSON形式で返す
- * @throws {Error} - リクエストが失敗した場合にエラーをスロー
+ * @param {string} path
+ * @param {Record<string, string | number>} query
+ * @param {Record<string, string>} headers
+ * @returns {Promise<any>}
+ * @throws {Error}
  */
+
 export const resas = async (
   path: string,
   query: Record<string, string | number> = {},
   headers: Record<string, string> = {}
 ): Promise<any> => {
   try {
-    // クエリパラメータをURLSearchParamsオブジェクトに変換してURLを構築
     const params = new URLSearchParams(
       Object.entries(query).map(([key, value]) => [key, String(value)])
     )
     const url = `${baseURL}${path}?${params}`
 
-    // APIリクエストを実行
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -32,15 +28,12 @@ export const resas = async (
       },
     })
 
-    // 応答がOKでない場合は、エラーをスロー
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`)
     }
 
-    // 応答データをJSON形式で返す
     return await response.json()
   } catch (error) {
-    // console.error('Error caught while fetching:', error)
     throw error
   }
 }
