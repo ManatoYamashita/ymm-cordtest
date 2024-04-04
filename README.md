@@ -1,4 +1,4 @@
-# 都道府県別の総人口推移グラフを表示するSPA(Single Page Application)
+# 都道府県別の総人口推移グラフを表示するSPA
 
 [Deployed by Vercel](https://ymm-cordtest.vercel.app)
 
@@ -12,15 +12,16 @@
 
 ## 技術スタック
 
-- React（Next.js）
-- TypeScript
-- SCSS
-- Highcharts
+- React(ver: 18)
+- Next.js(ver: 14.1.4)
+- TypeScript(ver: 5)
+- SCSS(ver: 1.72.2)
+- Highcharts(ver: 11.4.0)
 
-- ESlint
-- Prettier
-- ChatGPT
-- jest
+-- ESlint(ver: 8)
+-- Prettier(ver: 3.2.5)
+-- ChatGPT(ver: 4)
+-- jest(ver: 29.7.0)
 
 ## ローカルでの実行方法
 
