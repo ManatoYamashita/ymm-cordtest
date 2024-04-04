@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "jsx": "preserve",
-    "module": "commonjs"
+    "module": "commonjs",
+    "forceConsistentCasingInFileNames": true
   }
 }

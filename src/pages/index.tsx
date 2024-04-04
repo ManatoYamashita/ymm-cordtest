@@ -21,7 +21,7 @@ export default function Home() {
   )
 
   // チェックボックスの状態変更をハンドルする関数
-  function handleCheckboxChange(prefCode: number, isChecked: boolean) {
+  function onChange(prefCode: number, isChecked: boolean) {
     setSelectedPrefCodes((prev) =>
       isChecked ? [...prev, prefCode] : prev.filter((code) => code !== prefCode)
     )
@@ -40,10 +40,7 @@ export default function Home() {
                 className={`${styles.prefectures} ${selectedPrefCodes.includes(prefCode) ? styles.prefecturesSelected : ''}`}
                 onClick={(e) => {
                   e.preventDefault()
-                  handleCheckboxChange(
-                    prefCode,
-                    !selectedPrefCodes.includes(prefCode)
-                  )
+                  onChange(prefCode, !selectedPrefCodes.includes(prefCode))
                 }}
               >
                 <input
@@ -52,6 +49,7 @@ export default function Home() {
                   name="prefectures"
                   value={prefCode}
                   checked={selectedPrefCodes.includes(prefCode)}
+                  onChange={(e) => onChange(prefCode, e.target.checked)}
                 />
                 <label htmlFor={`pref-${prefCode}`}>{prefName}</label>
               </div>

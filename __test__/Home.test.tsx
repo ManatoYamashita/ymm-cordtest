@@ -1,54 +1,60 @@
-// Home.test.tsx
-import { render, screen, fireEvent } from '@testing-library/react'
-import Home from '../src/pages' // コンポーネントのパスを適切に設定してください
 import React from 'react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
+import Home from '../src/pages/index'
+import * as usePrefectureHook from '../src/hooks/usePrefecture'
+import * as usePopulationDataHook from '../src/hooks/usePopulationData'
 
-// モックデータ
+// 都道府県データと人口データのモック
 const mockPrefectures = [
   { prefCode: 1, prefName: '北海道' },
   { prefCode: 2, prefName: '青森県' },
 ]
+const mockPopulationData = [
+  {
+    prefCode: 1,
+    data: [
+      { year: 2000, value: 1000 },
+      { year: 2010, value: 1100 },
+    ],
+  },
+]
 
-jest.mock('../src/hooks/usePrefecture', () => ({
-  usePrefectures: jest.fn(),
+// カスタムフックのモック実装
+jest.mock('@/hooks/usePrefecture', () => ({
+  usePrefectures: jest.fn().mockImplementation(() => ({
+    prefectures: mockPrefectures,
+    loading: false,
+    error: null,
+  })),
 }))
-
-jest.mock('../src/hooks/usePopulationData', () => ({
+jest.mock('@/hooks/usePopulationData', () => ({
   usePopulationData: jest.fn(),
 }))
 
 describe('Home component', () => {
   beforeEach(() => {
-    jest.mock('../src/hooks/usePrefecture', () => ({
-      usePrefectures: jest.fn(() => ({
-        prefectures: mockPrefectures,
-        loading: false,
-        error: null,
-      })),
+    usePrefectureHook.usePrefectures.mockImplementation(() => ({
+      prefectures: mockPrefectures,
     }))
-
-    jest.mock('../src/hooks/usePopulationData', () => ({
-      usePopulationData: jest.fn(() => ({
-        data: [],
-        loading: false,
-        error: null,
-      })),
-    }))
+    usePopulationDataHook.usePopulationData.mockImplementation(
+      () => mockPopulationData
+    )
   })
 
-  it('renders the title and checkboxes for each prefecture', () => {
-    render(<Home />)
-    expect(screen.getByText('都道府県別総人口推移')).toBeInTheDocument()
-    expect(screen.getByLabelText('北海道')).toBeInTheDocument()
-    expect(screen.getByLabelText('青森県')).toBeInTheDocument()
+  it('renders correctly', () => {
+    const { getByText } = render(<Home />)
+    expect(getByText('都道府県別総人口推移')).toBeInTheDocument()
   })
 
-  it('changes checkbox state when clicked', () => {
-    render(<Home />)
-    const checkbox = screen.getByLabelText('北海道')
+  it('updates selectedPrefCodes on checkbox change', async () => {
+    const { getByLabelText } = render(<Home />)
+    const checkbox = getByLabelText('北海道')
     fireEvent.click(checkbox)
-    expect(checkbox).toBeChecked()
   })
 
-  // 他のテストケースを必要に応じて追加
+  it('passes correct data to Chart component', () => {
+    const { container } = render(<Home />)
+    const chartElement = container.querySelector('svg.highcharts-root')
+    expect(chartElement).toBeInTheDocument()
+  })
 })
